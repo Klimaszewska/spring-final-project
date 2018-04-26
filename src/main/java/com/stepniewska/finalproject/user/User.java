@@ -1,5 +1,6 @@
 package com.stepniewska.finalproject.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +14,9 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Data
-@Builder
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "user")
 public class User implements UserDetails{
@@ -33,7 +35,6 @@ public class User implements UserDetails{
 
     @Column(name = "displayed_user_name")
     private String displayedUserName;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
