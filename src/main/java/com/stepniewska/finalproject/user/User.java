@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -27,10 +29,14 @@ public class User implements UserDetails{
     private Integer id;
 
     @Column(name = "user_email", nullable = false)
+    //NotEmpty added
+    @NotEmpty(message = "Email is required")
+    @Email
     private String email;
 
     @Column(name = "user_password", nullable = false)
-    @Email
+    //NotEmpty added
+    @NotEmpty(message = "Password is required")
     private String password;
 
     @Column(name = "displayed_user_name")
