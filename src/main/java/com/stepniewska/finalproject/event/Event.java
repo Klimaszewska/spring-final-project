@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -23,23 +22,23 @@ public class Event {
     private Integer eventId;
 
     @Column(name = "event_date", nullable = false)
-    @NotEmpty(message = "The event date is required")
-    private Date eventDate;
+    @NotEmpty(message = "This field is required")
+    private LocalDateTime eventDate;
 
     @Column(name = "event_name", nullable = false)
-    @NotEmpty(message = "The event name is required")
+    @NotEmpty(message = "This field is required")
     private String eventName;
 
     @Column(name = "event_address", nullable = false)
-    @NotEmpty(message = "The event address is required")
+    @NotEmpty(message = "This field is required")
     private String eventAddress;
 
     @Column(name = "event_access", nullable = false)
-    @NotEmpty(message = "You need to mark the even as PRIVATE or PUBLIC")
+    @NotEmpty(message = "You need to mark the event as PRIVATE or PUBLIC")
     private EventAccess eventAccess;
 
     @Column(name = "event_organizer", nullable = false)
-    @NotEmpty(message = "The event organizer is required")
+    @NotEmpty(message = "This field is required")
     private String eventOrganizer;
 
 }
