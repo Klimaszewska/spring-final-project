@@ -1,4 +1,4 @@
-package com.stepniewska.finalproject.event;
+package com.stepniewska.finalproject.Event;
 
 public enum EventAccess {
     PUBLIC,

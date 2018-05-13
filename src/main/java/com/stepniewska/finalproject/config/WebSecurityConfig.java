@@ -1,6 +1,5 @@
 package com.stepniewska.finalproject.config;
 
-import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -30,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/unauth/**", "/page/**")
+                .antMatchers("/unauth/**", "/static/page/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
