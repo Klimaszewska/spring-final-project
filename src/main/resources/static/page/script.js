@@ -23,7 +23,8 @@ $("#create-button").click(function () {
         contentType: "application/json; charset=utf-8",
         success: function (response) {
             clearValidationErrors();
-            // fillTable();
+            resetForm();
+            showSuccessAlert();
             console.log(event);
         },
         error: function (xhr) {
@@ -150,5 +151,46 @@ function showDeleteModal(id) {
     })
 }
 
+/*$("#event-added-alert").fadeTo(1000, 500).slideUp(500, function(){
+    $("#event-added-alert").alert('close');
+});*/
 
+
+function showSuccessAlert(){
+/*    $("#event-added-alert").show().delay(3000).fadeOut('slow');*/
+    $("#event-added-alert").show();
+}
+
+function hideAlerts(){
+    $("#event-added-alert").hide();
+}
+
+$("#register-submit-button").click(function () {
+    var userEmail = $("#user-email").val();
+    var userPassword = $("#user-password").val();
+
+
+    var user = {
+        userEmail: userEmail,
+        userPassword: userPassword,
+    };
+
+    $.post({
+        url: "/unauth/register",
+        data: JSON.stringify(user),
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+            clearValidationErrors();
+            resetForm();
+            console.log(user);
+        },
+        error: function (xhr) {
+            handleValidationError(xhr.responseJSON);
+        }
+    });
+    return false;
+});
+
+
+hideAlerts();
 fillTable();

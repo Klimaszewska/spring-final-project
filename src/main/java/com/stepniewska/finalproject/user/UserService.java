@@ -16,7 +16,7 @@ public class UserService implements UserDetailsService {
 
 
     public String findDisplayedUserName(String email){
-        return userRepository.findByEmail(email).getDisplayedUserName();
+        return userRepository.findByEmail(email).getUsername();
     }
 
     @Override
@@ -26,5 +26,9 @@ public class UserService implements UserDetailsService {
 
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public User create(User user){
+        return userRepository.save(user);
     }
 }
