@@ -3,12 +3,8 @@ package com.stepniewska.finalproject.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +12,6 @@ public class UserController {
 
 /*    @Autowired
     UserRepository userRepository;*/
-
 
     private UserService userService;
 
@@ -47,6 +42,12 @@ public class UserController {
     @GetMapping("/unauth/users")
     public List<User> getAll() {
         return userService.findAll();
+    }
+
+
+    @PostMapping("/unauth/register")
+    public User create(@RequestBody @Valid User user){
+        return userService.create(user);
     }
 
 

@@ -103,6 +103,7 @@ function resetForm() {
     $("#event-access").val("");
 }
 
+
 $("#cancel-button").click(function() {
     resetForm();
     return false;
@@ -165,31 +166,7 @@ function hideAlerts(){
     $("#event-added-alert").hide();
 }
 
-$("#register-submit-button").click(function () {
-    var userEmail = $("#user-email").val();
-    var userPassword = $("#user-password").val();
 
-
-    var user = {
-        userEmail: userEmail,
-        userPassword: userPassword,
-    };
-
-    $.post({
-        url: "/unauth/register",
-        data: JSON.stringify(user),
-        contentType: "application/json; charset=utf-8",
-        success: function (response) {
-            clearValidationErrors();
-            resetForm();
-            console.log(user);
-        },
-        error: function (xhr) {
-            handleValidationError(xhr.responseJSON);
-        }
-    });
-    return false;
-});
 
 
 hideAlerts();

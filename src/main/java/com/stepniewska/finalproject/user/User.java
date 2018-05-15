@@ -1,5 +1,6 @@
 package com.stepniewska.finalproject.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,14 +30,15 @@ public class User implements UserDetails{
     private Integer id;
 
     @Column(name = "user_email", nullable = false)
-    //NotEmpty added
-    @NotEmpty(message = "Email is required")
+    @NotEmpty
+    @NotNull(message = "Email is required")
     @Email
     private String email;
 
     @Column(name = "user_password", nullable = false)
-    //NotEmpty added
-    @NotEmpty(message = "Password is required")
+    @NotEmpty
+    @NotNull(message = "Password is required")
+    @JsonIgnore
     private String password;
 
     @Column(name = "displayed_user_name")

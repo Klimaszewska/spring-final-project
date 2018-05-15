@@ -1,5 +1,6 @@
 package com.stepniewska.finalproject.config;
 
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -15,24 +16,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
+@AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private UserDetailsService userDetailsService;
 
-    public WebSecurityConfig(@Lazy UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
+//    public WebSecurityConfig(@Lazy UserDetailsService userDetailsService) {
+//        this.userDetailsService = userDetailsService;
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .disable()
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/unauth/**", "/static/page/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/unauth/**", "/static/page/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic();
     }
