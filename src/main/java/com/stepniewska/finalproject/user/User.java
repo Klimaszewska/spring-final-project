@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
@@ -38,7 +39,7 @@ public class User implements UserDetails{
     @Column(name = "user_password", nullable = false)
     @NotEmpty
     @NotNull(message = "Password is required")
-    @JsonIgnore
+    //@JsonIgnore
     private String password;
 
     @Column(name = "displayed_user_name")

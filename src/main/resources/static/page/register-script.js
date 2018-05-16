@@ -18,11 +18,12 @@ $("#register-submit-button").click(function () {
         data: JSON.stringify(user),
         contentType: "application/json; charset=utf-8",
         success: function (response) {
-            //clearValidationErrors();
+            clearValidationErrors();
             resetRegistrationForm();
             console.log(user);
         },
         error: function (xhr) {
+            console.log(xhr);
             handleValidationError(xhr.responseJSON);
         }
     });
@@ -38,9 +39,15 @@ function handleValidationError(fieldValidationErrors) {
     clearValidationErrors();
     for (var i = 0; i < fieldValidationErrors.length; i++) {
         var fieldValidationError = fieldValidationErrors[i];
-        var $field = $("#" + fieldValidationError.fieldName);
+        console.log(fieldValidationError);
+        var $field = $("#user-" + fieldValidationError.field);
         $field.addClass("is-invalid");
-        $field.siblings(".invalid-feedback").text(fieldValidationError.message);
+        $field.siblings(".invalid-feedback").text("Error!");
+/*        $field.siblings(".invalid-feedback").text(fieldValidationError.message);*/
     }
     $(".form-control:not(.is-invalid)").addClass("is-valid");
+}
+
+function clearValidationErrors() {
+    $(".form-control").removeClass("is-invalid").removeClass("is-valid");
 }
